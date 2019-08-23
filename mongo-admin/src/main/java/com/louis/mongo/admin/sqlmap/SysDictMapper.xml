@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.louis.mongo.admin.dao.SysDictMapper">
+  <resultMap id="BaseResultMap" type="com.louis.mongo.admin.model.SysDict">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="lable" jdbcType="VARCHAR" property="lable" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="sort" jdbcType="DECIMAL" property="sort" />
+    <result column="create_by" jdbcType="VARCHAR" property="create_by" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+    <result column="last_update_by" jdbcType="VARCHAR" property="last_update_by" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="last_update_time" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="del_flag" jdbcType="TINYINT" property="del_flag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, value, lable, type, description, sort, create_by, create_time, last_update_by, 
+    last_update_time, remarks, del_flag
+  </sql>
+  <select id="findPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+  </select>
+  <select id="findPageByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <bind name="pattern" value="'%' + _parameter.lable + '%'"/>
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where lable like #{pattern}
+  </select>
+  <select id="findByLable" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where lable = #{lable,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sys_dict
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.louis.mongo.admin.model.SysDict">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_dict (value, lable, type, 
+      description, sort, create_by, 
+      create_time, last_update_by, last_update_time, 
+      remarks, del_flag)
+    values (#{value,jdbcType=VARCHAR}, #{lable,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, #{create_by,jdbcType=VARCHAR}, 
+      #{create_time,jdbcType=TIMESTAMP}, #{last_update_by,jdbcType=VARCHAR}, #{last_update_time,jdbcType=TIMESTAMP}, 
+      #{remarks,jdbcType=VARCHAR}, #{del_flag,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.louis.mongo.admin.model.SysDict">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_dict
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="value != null">
+        value,
+      </if>
+      <if test="lable != null">
+        lable,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="create_by != null">
+        create_by,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+      <if test="last_update_by != null">
+        last_update_by,
+      </if>
+      <if test="last_update_time != null">
+        last_update_time,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="del_flag != null">
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="lable != null">
+        #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="create_by != null">
+        #{create_by,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="last_update_by != null">
+        #{last_update_by,jdbcType=VARCHAR},
+      </if>
+      <if test="last_update_time != null">
+        #{last_update_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="del_flag != null">
+        #{del_flag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.louis.mongo.admin.model.SysDict">
+    update sys_dict
+    <set>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="lable != null">
+        lable = #{lable,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="create_by != null">
+        create_by = #{create_by,jdbcType=VARCHAR},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="last_update_by != null">
+        last_update_by = #{last_update_by,jdbcType=VARCHAR},
+      </if>
+      <if test="last_update_time != null">
+        last_update_time = #{last_update_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="del_flag != null">
+        del_flag = #{del_flag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.louis.mongo.admin.model.SysDict">
+    update sys_dict
+    set value = #{value,jdbcType=VARCHAR},
+      lable = #{lable,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=DECIMAL},
+      create_by = #{create_by,jdbcType=VARCHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP},
+      last_update_by = #{last_update_by,jdbcType=VARCHAR},
+      last_update_time = #{last_update_time,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      del_flag = #{del_flag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
