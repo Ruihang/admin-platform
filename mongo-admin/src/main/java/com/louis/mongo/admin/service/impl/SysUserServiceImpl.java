@@ -8,7 +8,6 @@ import com.louis.mongo.admin.model.SysRole;
 import com.louis.mongo.admin.model.SysUser;
 import com.louis.mongo.admin.model.SysUserRole;
 import com.louis.mongo.admin.service.SysMenuService;
-import com.louis.mongo.admin.service.SysRoleService;
 import com.louis.mongo.admin.service.SysUserService;
 import com.louis.mongo.common.utils.DateTimeUtils;
 import com.louis.mongo.common.utils.PoiUtils;
@@ -43,7 +42,7 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
-    public List<SysUser> findByName(String name) {
+    public SysUser findByName(String name) {
         return sysUserMapper.findByName(name);
     }
 

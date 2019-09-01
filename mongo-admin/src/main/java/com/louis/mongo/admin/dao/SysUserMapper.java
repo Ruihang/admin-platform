@@ -34,7 +34,7 @@ public interface SysUserMapper {
      * 根据名称查询
      * @return
      */
-    List<SysUser> findByName(@Param("name") String name);
+    SysUser findByName(@Param("name") String name);
 
     List<SysUser> findPageByNameAndEmail(@Param("name") String name,@Param("email") String email);
 

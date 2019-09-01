@@ -19,7 +19,7 @@ public interface SysUserService extends CurdService<SysUser> {
      * 根据名称查询
      * @return
      */
-    List<SysUser> findByName(String name);
+    SysUser findByName(String name);
 
     /**
      * 查询用户权限

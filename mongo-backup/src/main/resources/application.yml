@@ -1,0 +1,12 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: mongo-backup
+mongo:
+  backup:
+    datasource:
+      host: localhost
+      userName: root
+      password: 123456
+      database: mongo

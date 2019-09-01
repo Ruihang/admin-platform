@@ -28,4 +28,19 @@ public class FileUtils {
             e.printStackTrace();
         }
     }
+
+    public static void deleteFile(File file) {
+        // 判断是否为目录，不是的话跳过，直接删除；如果是目录，先将目录清空
+        if (file.isDirectory()) {
+            // 获取目录下的文件/目录
+            File[] subFiles = file.listFiles();
+            // 遍历该目录
+            for (File subFile : subFiles) {
+                // 递归删除
+                deleteFile(subFile);
+            }
+        }
+        // 删除空目录或文件
+        file.delete();
+    }
 }

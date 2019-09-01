@@ -13,5 +13,6 @@
     <module>../mongo-admin</module>
     <module>../mongo-common</module>
     <module>../mongo-core</module>
+    <module>../mongo-backup</module>
   </modules>
 </project>
