@@ -14,5 +14,6 @@
     <module>../mongo-common</module>
     <module>../mongo-core</module>
     <module>../mongo-backup</module>
+    <module>../mongo-monitor</module>
   </modules>
 </project>
