@@ -15,5 +15,8 @@
     <module>../mongo-core</module>
     <module>../mongo-backup</module>
     <module>../mongo-monitor</module>
+    <module>../mongo-producer</module>
+    <module>../mongo-producer2</module>
+    <module>../mongo-consumer</module>
   </modules>
 </project>
